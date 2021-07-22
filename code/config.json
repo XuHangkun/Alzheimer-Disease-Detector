@@ -1,0 +1,41 @@
+{
+  "model_algorithm": "feature_classification",
+  "model_type": "PyTorch",
+  "runtime": "python3.6",
+
+  "apis": [
+    {
+      "procotol": "http",
+      "url": "/",
+      "method": "post",
+
+      "request": {
+        "Content-type": "multipart/form-data",
+        "data": {
+          "type": "object",
+          "properties": {
+            "features": {
+              "type": "file"
+            }
+          }
+        }
+      },
+
+      "response": {
+        "Content-type": "applicaton/json",
+        "data": {
+          "type": "object",
+          "properties": {
+            "scores": {
+              "type": "array",
+              "items": [{
+                "type": "number"
+              }]
+            }
+          }
+        }
+      }
+    }
+  ],
+
+} 
