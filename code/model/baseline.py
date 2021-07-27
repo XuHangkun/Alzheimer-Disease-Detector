@@ -3,8 +3,8 @@ import torch.nn as nn
 
 class BaselineConfig:
     def __init__(self,in_dim = 28169,
-        n_hidden_1 = 4096,
-        n_hidden_2 = 512,
+        n_hidden_1 = 2048,
+        n_hidden_2 = 256,
         out_dim = 3,
         dropout = 0.1
         ):
@@ -23,7 +23,7 @@ class Baseline(nn.Module):
         self.layer3 = nn.Linear(self.config.n_hidden_2, self.config.out_dim)
         self.relu = nn.ReLU()
         self.dropout = nn.Dropout(p=self.config.dropout)
-        self.softmax = nn.Softmax(dim=1)
+        self.softmax = nn.Softmax(dim=-1)
 
     def forward(self, x):
         """

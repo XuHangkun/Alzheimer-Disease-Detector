@@ -37,5 +37,15 @@
       }
     }
   ],
+  "dependencies": [
+      {
+          "installer": "pip",
+          "packages": [
+              {
+                  "package_name": "pandas"
+              }
+          ]
+      }
+  ]
 
 } 

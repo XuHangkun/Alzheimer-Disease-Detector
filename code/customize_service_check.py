@@ -5,7 +5,7 @@ import numpy as np
 import torch.nn as nn
 import torch
 import pandas as pd
-from model_service.pytorch_model_service import PTServingBaseService
+# from model_service.pytorch_model_service import PTServingBaseService
 
 class SplitBaselineConfig:
     def __init__(self,
@@ -102,12 +102,13 @@ class SplitBaseline(nn.Module):
         x = self.softmax(x)
         return x
 
-class PredictService(PTServingBaseService):
+class PredictService:
     def __init__(self, model_name, model_path):
-        super(PredictService, self).__init__(model_name, model_path)
-
+        # super(PredictService, self).__init__(model_name, model_path)
+        self.model_path = model_path
         config = SplitBaselineConfig(atlas="Brodmann")
         config.initialize()
+        print(config.__dict__)
         model = SplitBaseline(config)
         model.load_state_dict(torch.load(model_path, map_location ='cpu'))
         model.eval()
@@ -147,3 +148,6 @@ class PredictService(PTServingBaseService):
             infer_output['scores'] = result.tolist()
 
         return infer_output
+
+if __name__ == "__main__":
+    PredictService("baseline","model.pth")
