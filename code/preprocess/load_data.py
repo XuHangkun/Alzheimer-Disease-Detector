@@ -28,11 +28,12 @@ def load_data(subject_dir, csv_path):
             label = int(row['Label'])
             tiv = float(row['TIV'])
             xx = np.load(features_path)
+            # xx[:13925] = xx[:13925]/tiv
             x.append(xx)
             y.append(label)
     x = np.array(x)
     y = np.array(y)
-    return x, y
+    return x, y, subjects
 
 def test():
     atlas_roi_df = pd.read_csv("../data/atlas_roi.csv")

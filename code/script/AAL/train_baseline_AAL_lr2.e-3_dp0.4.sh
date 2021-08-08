@@ -37,8 +37,8 @@
 
 ############ TRAIN ################
 cd /hpcfs/juno/junogpu/xuhangkun/ML/MyselfProject/hw_ad_competition/code
-python train.py --lr 2.e-3 --epoch 100 --atlas AAL --model_name splitbaseline \
---train_info_path ../model/train_AAL_info.csv \
---valid_info_path ../model/valid_AAL_info.csv \
---model_path ../model/baseline/baseline_AAL_epoch%d.pth \
---dropout 0.4
+python train.py --lr 2.e-3 --epoch 200 --atlas AAL --model_name splitbaseline \
+--train_info_path ../model/train_AAL_lr2.e-3_dp0.4_info.csv \
+--valid_info_path ../model/valid_AAL_lr2.e-3_dp0.4_info.csv \
+--model_path ../model/baseline/baseline_AAL_lr2.e-3_dp0.4_epoch%d.pth \
+--dropout 0.4 --save_start_epoch 100

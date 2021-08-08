@@ -1,7 +1,9 @@
 from .baseline_dataset import BaselineDataset
 
-def create_dataset(name,x,y):
+def create_dataset(name,x,y,n_aug=0,tuning=0.015):
     if name.lower() == "baseline":
-        return BaselineDataset(x,y)
+        dataset = BaselineDataset(x,y,n_aug=n_aug,tuning=tuning)
     else:
-        return BaselineDataset(x,y)
+        dataset = BaselineDataset(x,y,n_aug=n_aug,tuning=tuning)
+    print("Create dataset : n_aug : %d ; tuning : %.3f ; Num of data : %d !"%(dataset.n_aug,dataset.tuning,len(dataset)))
+    return dataset

@@ -33,13 +33,6 @@ def create_model(model_name="baseline",**kwargs):
         config.initialize()
         model = Chi2Baseline(config)
         print("Create chi2 Baseline Model")
-    elif model_name.lower() == "fbaseline":
-        config = FBaselineConfig()
-        for key in kwargs.keys():
-            setattr(config,key,kwargs[key])
-        config.initialize()
-        model = FBaseline(config)
-        print("Create Anova F Baseline Model")
     elif model_name.lower() == "pcabaseline":
         config = PCABaselineConfig()
         for key in kwargs.keys():
