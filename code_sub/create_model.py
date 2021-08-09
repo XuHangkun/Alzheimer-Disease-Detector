@@ -4,6 +4,7 @@ from splitbaseline import SplitBaseline,SplitBaselineConfig
 from chi2baseline import Chi2Baseline,Chi2BaselineConfig
 from fbaseline import FBaseline,FBaselineConfig
 from mergesplitbaseline import MergeSplitBaselineConfig,MergeSplitBaseline
+from mergeAALHammersRBN import MergeAALHammersRBNConfig, MergeAALHammersRBNBaseline
 
 def create_model(model_name="baseline",**kwargs):
     """create model
@@ -33,6 +34,13 @@ def create_model(model_name="baseline",**kwargs):
         config.initialize()
         model = MergeSplitBaseline(config)
         print("Create Merge Split Baseline Model")
+    elif model_name.lower() == "mergeaalhammersrbn":
+        config = MergeAALHammersRBNConfig()
+        for key in kwargs.keys():
+            setattr(config,key,kwargs[key])
+        config.initialize()
+        model = MergeAALHammersRBNBaseline(config)
+        print("Create Merge AAL Hammers rBN Baseline Model")
     elif model_name.lower() == "chi2baseline":
         config = Chi2BaselineConfig()
         for key in kwargs.keys():

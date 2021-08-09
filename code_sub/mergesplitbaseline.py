@@ -80,13 +80,15 @@ class MergeSplitBaseline(nn.Module):
         x = torch.stack(xs)
         ids = range(1,10)
         x = x[ids,:]
+        print(x)
         x = torch.mean(x,dim=0)
         return x
 
 def merge_models():
     # best_epoches = [261,417,457,449,496,468,309,285,370,490]
     # best_epoches = [266,127,481,468,215,401,489,441,325,439]      # with label smooth
-    best_epoches = [900,797,921,914,780,811,796,781,546,922]      # Hammers
+    best_epoches = [900,797,921,914,780,811,796,781,546,922]      # Hammers Best
+    #best_epoches = [923,825,921,892,990,811,796,786,547,829]      # Hammers
     #best_epoches = [479 for i in range(10)]
     paths = [
         "../model/Hammers/baseline_Hammers_lr1.e-3_dp0.6_fold%d_epoch%d.pth"%(x,y) for x,y in zip(range(1,11),best_epoches)
@@ -106,7 +108,7 @@ def test():
     model = MergeSplitBaseline(config)
     model.load_state_dict(torch.load("model.pth", map_location ='cpu'))
     model.eval()
-    x = np.load("../data/train/Subject_0001.npy")
+    x = np.load("../data/train/Subject_0002.npy")
     x = np.nan_to_num(x,  nan=1.e-10, posinf=1.e-10, neginf=1.e-10)
     mean = np.load("mean.npy")
     std = np.load("std.npy")
@@ -118,5 +120,5 @@ def test():
     print(y)
 
 if __name__ == "__main__":
-    #merge_models()
+    merge_models()
     test()

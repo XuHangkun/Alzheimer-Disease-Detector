@@ -13,9 +13,9 @@ class PredictService(PTServingBaseService):
         super(PredictService, self).__init__(model_name, model_path)
         dir_path = os.path.dirname(os.path.realpath(self.model_path))
         model = create_model(
-                "mergesplitbaseline",
+                "mergeaalhammersrbn",
                 atlas_roi_path = os.path.join(dir_path,"atlas_roi.csv"),
-                atlas=["Hammers"]
+                atlas_folds = [1,7,1]
                 )
         model.load_state_dict(torch.load(model_path, map_location ='cpu'))
         model.eval()
