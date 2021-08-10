@@ -14,7 +14,7 @@ class PredictService:
         model = create_model(
                 "mergeaalhammersrbn",
                 atlas_roi_path = os.path.join(dir_path,"atlas_roi.csv"),
-                atlas_folds = [1,7,1]
+                atlas_folds = [1,7,1,0,0]
                 )
         model.load_state_dict(torch.load(model_path, map_location ='cpu'))
         model.eval()

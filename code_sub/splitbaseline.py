@@ -29,6 +29,7 @@ class SplitBaselineConfig:
         self.x_ids = self.cal_x_ids()
         self.in_dim = len(self.x_ids)
         self.n_hidden = min(self.in_dim // 8,512)
+        self.n_hidden = max(self.n_hidden,32)
 
     def atlas_contain(self,atlas):
         """judge if atlas contains in atlas
